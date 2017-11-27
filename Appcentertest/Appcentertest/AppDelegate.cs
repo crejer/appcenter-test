@@ -31,8 +31,9 @@ namespace Appcentertest
             eventData.Add("Naam", "Jeroen");
             eventData.Add("Familienaam", "Crevits");
             eventData.Add("Bedrijf", "Bazookas");
+            eventData.Add("Device", System.Environment.OSVersion.VersionString);
             Analytics.TrackEvent("App opgestart", eventData);
-            Console.WriteLine("Ik ben jeroen: " + System.Environment.GetEnvironmentVariable("TestVariable"));
+
             return true;
         }
 
