@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Microsoft.AppCenter.Push;
 using UIKit;
 
 namespace Appcentertest
@@ -34,7 +34,39 @@ namespace Appcentertest
 
             // Present Alert
             PresentViewController(okAlertController, true, null);
+
+            Push.PushNotificationReceived -= Push_PushNotificationReceived;
+            Push.PushNotificationReceived += Push_PushNotificationReceived;
         }
+
+        void Push_PushNotificationReceived(object sender, PushNotificationReceivedEventArgs e)
+        {
+            // Add the notification message and title to the message
+            var summary = $"Push notification received:" +
+                                $"\n\tNotification title: {e.Title}" +
+                                $"\n\tMessage: {e.Message}";
+
+            // If there is custom data associated with the notification,
+            // print the entries
+            if (e.CustomData != null)
+            {
+                summary += "\n\tCustom data:\n";
+                foreach (var key in e.CustomData.Keys)
+                {
+                    summary += $"\t\t{key} : {e.CustomData[key]}\n";
+                }
+            }
+
+            // Send the notification summary to debug output
+            var okAlertController = UIAlertController.Create("Push Alert", summary, UIAlertControllerStyle.Alert);
+
+            //Add Action
+            okAlertController.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
+
+            // Present Alert
+            PresentViewController(okAlertController, true, null);
+        }
+
     }
         
         

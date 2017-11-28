@@ -3,6 +3,7 @@ using UIKit;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Push;
 using System.Collections.Generic;
 using System;
 
@@ -26,7 +27,7 @@ namespace Appcentertest
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
             AppCenter.Start("702b7ffe-b4a7-4ca4-9bb4-ce34750ca871",
-                   typeof(Analytics), typeof(Crashes));
+                            typeof(Analytics), typeof(Crashes), typeof(Push));
             Dictionary<string, string> eventData = new Dictionary<string, string>();
             eventData.Add("Naam", "Jeroen");
             eventData.Add("Familienaam", "Crevits");
@@ -34,8 +35,11 @@ namespace Appcentertest
             eventData.Add("Device", System.Environment.OSVersion.VersionString);
             Analytics.TrackEvent("App opgestart", eventData);
 
+
+
             return true;
         }
+
 
         public override void OnResignActivation(UIApplication application)
         {
