@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Push;
 using UIKit;
 
@@ -61,7 +63,10 @@ namespace Appcentertest
             var okAlertController = UIAlertController.Create("Push Alert", summary, UIAlertControllerStyle.Alert);
 
             //Add Action
-            okAlertController.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
+            okAlertController.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, (obj) => {
+                List<string> nullList = null;
+                nullList.Clear();
+            }));
 
             // Present Alert
             PresentViewController(okAlertController, true, null);

@@ -35,7 +35,7 @@ namespace Appcentertest
             eventData.Add("Device", System.Environment.OSVersion.VersionString);
             Analytics.TrackEvent("App opgestart", eventData);
 
-
+           
 
             return true;
         }
